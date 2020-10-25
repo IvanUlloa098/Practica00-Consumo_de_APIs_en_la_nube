@@ -1,10 +1,12 @@
-function buscarPorCedula() {
+var data = null;
+
+function searchAPI() {
     
-    var cedula = document.getElementById("cedula").value;
+    var parameters = document.getElementById("search").value;
     
-    if (cedula == "") {
+    if (parameters == "") {
         
-        document.getElementById("telefonos").innerHTML = "";
+        document.getElementById("response").innerHTML = "<br>NOT FOUND";
     } else {
         
         if (window.XMLHttpRequest) {
@@ -19,35 +21,36 @@ function buscarPorCedula() {
         xmlhttp.onreadystatechange = function() {
             //alert("llegue "+this.status);
             if (this.readyState == 4 && this.status == 200) {
-                //alert("llegue");
-                document.getElementById("telefonos").innerHTML = this.responseText;
+                //alert("here");
+                data = JSON.parse(this.responseText);
+                details = "";
+                //console.log(data);
+                //console.log(data.meals[0].strMeal);
+                //console.log(data.meal[0]);    
+
+                for(var i=0; i < data.meals.length; i++){
+                    console.log(data.meals[i].strMeal);
+                    details += "<tr>"+
+                        "<td>" + data.meals[i].strMeal + "</td>" +
+                        "<td>" + data.meals[i].strDrinkAlternate + "</td>" +
+                        "<td>" + data.meals[i].strCategory + "</td>" +
+                        "<td>" + data.meals[i].strArea + "</td>" +
+                        "<td>" + data.meals[i].strInstructions + "</td>" +
+                        "<td> <img src=" + data.meals[i].strMealThumb + " width=\"100\" height=\"100\"> </td>" +
+                        "</tr>";
+                }
+                console.log(details);
+                document.getElementById("detailsTable").innerHTML = details;
+
             }
         };
-        xmlhttp.open("GET","../../controladores/usuario/consultar_telefono.php?cedula="+cedula,true);
+        xmlhttp.open("GET","https://www.themealdb.com/api/json/v1/1/search.php?s="+parameters,true);
         xmlhttp.send();
     }
     return false;
 
 }
 
-function validarTelefono(elemento) {
+function readJSON() {
     
-    if(elemento.value.length > 0 && elemento.value.length <= 10){
-        var miAscii = elemento.value.charCodeAt(elemento.value.length-1);
-        console.log(miAscii);
-        //alert(elemento.value.length);
-        if(miAscii >= 48 && miAscii <= 57){
-            return true;
-        } else {
-            elemento.value = elemento.value.substring(0, elemento.value.length-1);
-            return false;
-        }
-
-    }  else if (elemento.value.length > 10) {         
-        elemento.value = elemento.value.substring(0, elemento.value.length-1);
-        return false;
-    } else{
-        return true;
-    }
-
 }
