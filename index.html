@@ -3,6 +3,54 @@
   <head>
     <meta charset="utf-8">
     <script src="api_access.js" type="text/javascript"></script>
+
+    <style type="text/css">
+      .container {
+          border: 1px solid rgba(0, 0, 0, .11);
+          padding: 10px;
+          width: 500px
+      }
+
+      .controls-item {
+          display: inline-block;
+      }
+
+      .btn {
+          margin: 1px;
+      }
+
+      .tg  {
+        border-collapse:collapse;
+        border-color:#93a1a1;
+        border-spacing:0;
+      }
+
+      .tg td{
+        background-color:#fdf6e3;
+        border-color:#93a1a1;border-style:solid;
+        border-width:0px;color:#002b36;
+        font-family:Arial, sans-serif;font-size:14px;overflow:hidden;
+        padding:10px 5px;word-break:normal;
+      }
+
+      .tg th{
+        background-color:#657b83;
+        border-color:#93a1a1;border-style:solid;
+        border-width:0px;color:#fdf6e3;
+        font-family:Arial, sans-serif;
+        font-size:14px;font-weight:normal;
+        overflow:hidden;padding:10px 5px;
+        word-break:normal;
+      }
+
+      .tg .tg-0pky{
+        border-color:inherit;
+        text-align:left;
+        vertical-align:top
+      }
+
+    </style>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -63,16 +111,20 @@
 
 <!-- Begin page content -->
 <main role="main" class="flex-shrink-0">
+
+  <div class="container ">
+
+  </div>
+
   <div class="container">
-    <table id = "dataTable">
+    <table id = "dataTable" class="tg">
       <thead>
         <tr>
-          <th>NAME</th>
-          <th>DRINK</th>
-          <th>CATEGORY</th>
-          <th>AREA</th>
-          <th>INSTRUCTIONS</th>
-          <th>THUMB</th>
+          <th class="tg-0pky">NAME</th>
+          <th class="tg-0pky">CATEGORY</th>
+          <th class="tg-0pky">AREA</th>
+          <th class="tg-0pky">INSTRUCTIONS</th>
+          <th class="tg-0pky">THUMB</th>
         </tr>
       </thead>
 
@@ -80,12 +132,15 @@
 
       </tbody>
 
-  </table>
+    </table>
     
     <span id = "response"></span>
+ </div>
 
+ <div class="container ">
+    <div id="pagination-wrapper"></div>
+ </div>
 
-  </div>
 </main>
 
 <footer class="footer mt-auto py-3">
